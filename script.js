@@ -85,6 +85,18 @@ async function captureAndSend() {
     canvasEl.toBlob(
       async (blob) => {
         try {
+          if (!blob || blob.size === 0) {
+            console.warn('Blob ist leer oder undefined!', blob);
+            resultEl.innerHTML = '<div class="result-empty">⚠️ Canvas-Fehler: Kein Bild</div>';
+            if (isRunning) {
+              frameIntervalId = setTimeout(captureAndSend, FRAME_INTERVAL);
+            }
+            return;
+          }
+
+          console.log('Blob-Größe:', blob.size, 'bytes');
+          console.log('Sende zu:', ROBOFLOW_URL);
+
           const formData = new FormData();
           formData.append('image', blob);
 
@@ -93,7 +105,11 @@ async function captureAndSend() {
             body: formData
           });
 
+          console.log('Response Status:', response.status);
+
           if (!response.ok) {
+            const errorText = await response.text();
+            console.error('Server Fehler:', errorText);
             throw new Error(`HTTP Error: ${response.status}`);
           }
 
