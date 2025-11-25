@@ -98,7 +98,7 @@ async function captureAndSend() {
           console.log('Sende zu:', ROBOFLOW_URL);
 
           const formData = new FormData();
-          formData.append('image', blob);
+          formData.append('file', blob);
 
           const response = await fetch(ROBOFLOW_URL, {
             method: 'POST',
