@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
@@ -113,12 +113,13 @@
   </style>
 </head>
 <body>
-  <h1>🎨 Artwork Recognition Test</h1>
+  <h1>ðŸŽ¨ Artwork Recognition Test</h1>
 
   <div class="container">
     <video id="camera" autoplay playsinline muted></video>
     <canvas id="canvas"></canvas>
 
+    <input id="fileInput" type="file" accept="image/*" style="padding:0.5rem;border-radius:6px;" />
     <button id="startBtn">Kamera starten</button>
 
     <div id="result">
@@ -126,11 +127,14 @@
     </div>
 
     <div class="info">
-      Alle 1-2 Sekunden wird ein Frame an Roboflow gesendet.<br>
-      <strong>WICHTIG für Smartphone:</strong> Diese Seite braucht HTTPS. Lokal geht nur localhost. Nutze ggf. ngrok für Fernzugriff oder deploye auf GitHub Pages/Netlify.
+      Nutzt jetzt ein lokales TensorFlow.js-Modell (offline) oder wähle ein Bild über "Datei auswählen".<br>
+      <strong>Wichtig für Smartphone:</strong> Öffne die Seite über HTTPS (GitHub Pages / Netlify oder localhost).
     </div>
   </div>
 
-  <script src="script.js?v=2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.12.0/dist/tf.min.js"></script>
+  <script src="script.js?v=3"></script>
 </body>
 </html>
+
+
